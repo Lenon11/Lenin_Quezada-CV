@@ -1,0 +1,171 @@
+\documentclass[10pt,a4paper,withhyper]{altacv}
+
+\geometry{left=1.2cm,right=1.2cm,top=1.2cm,bottom=1.2cm,columnsep=1.0cm}
+
+\usepackage{paracol}
+
+\iftutex
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkBlue}{HTML}{0F3D5E}
+\definecolor{AccentBlue}{HTML}{1D70A2}
+\definecolor{SoftBlue}{HTML}{DCEAF5}
+
+\colorlet{name}{black}
+\colorlet{tagline}{AccentBlue}
+\colorlet{heading}{DarkBlue}
+\colorlet{headingrule}{AccentBlue}
+\colorlet{subheading}{AccentBlue}
+\colorlet{accent}{AccentBlue}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+\renewcommand{\namefont}{\Huge\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\Large\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+\renewcommand{\cvItemMarker}{{\small\textbullet}}
+\renewcommand{\cvRatingMarker}{\faCircle}
+
+\renewcommand{\locationname}{Ubicación}
+\renewcommand{\datename}{Fecha}
+
+\begin{document}
+
+\name{Lenin Quezada}
+\tagline{Estudiante de Ingeniería Financiera | Data Science | Quantitative Finance | Machine Learning}
+
+\personalinfo{
+  \email{quezada.lenin@outlook.com}
+  \phone{+52 33 14185861}
+  \location{Guadalajara, Jalisco, México}
+  \linkedin{lenin-quezada-6b77a63a8}
+  \github{Lenon11}
+}
+
+\makecvheader
+
+\columnratio{0.64}
+
+\begin{paracol}{2}
+
+\cvsection{Perfil}
+
+Estudiante de \textbf{Ingeniería Financiera en ITESO} con interés en \textbf{ciencia de datos, machine learning, finanzas cuantitativas y visión artificial}. He desarrollado proyectos técnicos en \textbf{Python} enfocados en análisis financiero, riesgo crediticio, modelado estadístico y sistemas de clasificación basados en datos. Busco aplicar herramientas cuantitativas y de programación para resolver problemas reales en finanzas e ingeniería.
+
+\cvsection{Proyectos Destacados}
+
+\cvevent{Valuación Crediticia de Empresas}{Proyecto académico presentado en Citi Banamex}{}{}
+\begin{itemize}
+\item Desarrollo de un análisis de \textbf{riesgo crediticio corporativo} a partir de indicadores financieros.
+\item Implementación e interpretación del \textbf{Altman Z-Score} para apoyar decisiones de crédito.
+\item Integración de métricas financieras y criterios de evaluación para clasificar empresas según su perfil de riesgo.
+\end{itemize}
+
+\divider
+
+\cvevent{Mean-Reverting Portfolio}{Investigación en finanzas cuantitativas}{}{}
+\begin{itemize}
+\item Construcción de portafolios con reversión a la media usando \textbf{Engle-Granger} y \textbf{Johansen}.
+\item Implementación de portafolios sparse con \textbf{Lasso (L1 regularization)}.
+\item Estimación de \textbf{half-life} mediante procesos \textbf{Ornstein-Uhlenbeck} y validación out-of-sample.
+\end{itemize}
+
+\divider
+
+\cvevent{Modelado de Riesgo Crediticio con Machine Learning}{Proyecto académico y personal}{}{}
+\begin{itemize}
+\item Implementación de modelos de clasificación como \textbf{regresión logística, árboles de decisión y random forest}.
+\item Trabajo con \textbf{feature engineering}, validación y análisis de desempeño.
+\item Construcción de scores interpretables para clasificación de riesgo.
+\end{itemize}
+
+\divider
+
+\cvevent{Sistema de Visión Artificial para Clasificación de Objetos}{Proyecto actual en desarrollo}{}{}
+\begin{itemize}
+\item Desarrollo de un sistema de \textbf{visión artificial} aplicado a automatización industrial.
+\item Captura y procesamiento de imágenes con \textbf{Python y OpenCV}.
+\item Construcción de dataset propio y pruebas de clasificación de objetos sobre banda transportadora.
+\end{itemize}
+
+\cvsection{Educación}
+
+\cvevent{Ingeniería Financiera}{ITESO Universidad Jesuita de Guadalajara}{2022 -- Actualidad}{}
+Formación con enfoque en análisis cuantitativo, programación, estadística y finanzas.
+
+\switchcolumn
+
+\cvsection{Habilidades Técnicas}
+
+\cvtag{Python}
+\cvtag{SQL}
+\cvtag{MATLAB}
+\cvtag{Git}
+\cvtag{GitHub}
+
+\smallskip
+
+\cvtag{Pandas}
+\cvtag{NumPy}
+\cvtag{Scikit-learn}
+\cvtag{OpenCV}
+
+\smallskip
+
+\cvtag{Machine Learning}
+\cvtag{Data Analysis}
+\cvtag{Time Series}
+\cvtag{Credit Risk}
+\cvtag{Quant Finance}
+
+\cvsection{Áreas de Interés}
+
+\begin{itemize}
+\item Ciencia de datos
+\item Machine learning aplicado
+\item Finanzas cuantitativas
+\item Riesgo crediticio
+\item Visión artificial
+\item Automatización industrial
+\end{itemize}
+
+\cvsection{Herramientas y Métodos}
+
+\begin{itemize}
+\item Modelos de clasificación
+\item Validación cruzada
+\item Feature engineering
+\item Cointegración
+\item Backtesting básico
+\item Procesamiento de imágenes
+\end{itemize}
+
+\cvsection{Idiomas}
+
+\cvskill{Español}{5}
+\divider
+\cvskill{Inglés}{4}
+
+\medskip
+
+\cvsection{Enlaces}
+
+\begin{itemize}
+\item LinkedIn: linkedin.com/in/lenin-quezada-6b77a63a8
+\item GitHub: github.com/tuusuario
+\end{itemize}
+
+\end{paracol}
+
+\end{document}

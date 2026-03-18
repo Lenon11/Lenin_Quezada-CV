@@ -1,6 +1,6 @@
 \documentclass[10pt,a4paper,withhyper]{altacv}
 
-\geometry{left=1.2cm,right=1.2cm,top=1.2cm,bottom=1.2cm,columnsep=1.0cm}
+\geometry{left=1.0cm,right=1.0cm,top=1.0cm,bottom=1.0cm,columnsep=0.8cm}
 
 \usepackage{paracol}
 
@@ -29,16 +29,22 @@
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{LightGrey}
 
-\renewcommand{\namefont}{\Huge\bfseries}
+\renewcommand{\namefont}{\Large\bfseries}
 \renewcommand{\personalinfofont}{\footnotesize}
-\renewcommand{\cvsectionfont}{\Large\bfseries}
-\renewcommand{\cvsubsectionfont}{\large\bfseries}
+\renewcommand{\cvsectionfont}{\large\bfseries}
+\renewcommand{\cvsubsectionfont}{\normalsize\bfseries}
 
 \renewcommand{\cvItemMarker}{{\small\textbullet}}
 \renewcommand{\cvRatingMarker}{\faCircle}
 
 \renewcommand{\locationname}{Ubicación}
 \renewcommand{\datename}{Fecha}
+
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+
+\AtBeginEnvironment{itemize}{\vspace{-4pt}}
+\AtEndEnvironment{itemize}{\vspace{-4pt}}
 
 \begin{document}
 
@@ -55,7 +61,7 @@
 
 \makecvheader
 
-\columnratio{0.64}
+\columnratio{0.68}
 
 \begin{paracol}{2}
 
@@ -66,7 +72,7 @@ Estudiante de \textbf{Ingeniería Financiera en ITESO} con interés en \textbf{c
 \cvsection{Proyectos Destacados}
 
 \cvevent{Valuación Crediticia de Empresas}{Proyecto académico presentado en Citi Banamex}{}{}
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 \item Desarrollo de un análisis de \textbf{riesgo crediticio corporativo} a partir de indicadores financieros.
 \item Implementación e interpretación del \textbf{Altman Z-Score} para apoyar decisiones de crédito.
 \item Integración de métricas financieras y criterios de evaluación para clasificar empresas según su perfil de riesgo.
@@ -75,7 +81,7 @@ Estudiante de \textbf{Ingeniería Financiera en ITESO} con interés en \textbf{c
 \divider
 
 \cvevent{Mean-Reverting Portfolio}{Investigación en finanzas cuantitativas}{}{}
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 \item Construcción de portafolios con reversión a la media usando \textbf{Engle-Granger} y \textbf{Johansen}.
 \item Implementación de portafolios sparse con \textbf{Lasso (L1 regularization)}.
 \item Estimación de \textbf{half-life} mediante procesos \textbf{Ornstein-Uhlenbeck} y validación out-of-sample.
@@ -84,7 +90,7 @@ Estudiante de \textbf{Ingeniería Financiera en ITESO} con interés en \textbf{c
 \divider
 
 \cvevent{Modelado de Riesgo Crediticio con Machine Learning}{Proyecto académico y personal}{}{}
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 \item Implementación de modelos de clasificación como \textbf{regresión logística, árboles de decisión y random forest}.
 \item Trabajo con \textbf{feature engineering}, validación y análisis de desempeño.
 \item Construcción de scores interpretables para clasificación de riesgo.
@@ -93,7 +99,7 @@ Estudiante de \textbf{Ingeniería Financiera en ITESO} con interés en \textbf{c
 \divider
 
 \cvevent{Sistema de Visión Artificial para Clasificación de Objetos}{Proyecto actual en desarrollo}{}{}
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 \item Desarrollo de un sistema de \textbf{visión artificial} aplicado a automatización industrial.
 \item Captura y procesamiento de imágenes con \textbf{Python y OpenCV}.
 \item Construcción de dataset propio y pruebas de clasificación de objetos sobre banda transportadora.
@@ -108,17 +114,20 @@ Formación con enfoque en análisis cuantitativo, programación, estadística y 
 
 \cvsection{Habilidades Técnicas}
 
-\textbf{Lenguajes:} Python, SQL, MATLAB \\
+\textbf{Lenguajes:} Python, SQL, MATLAB
 
-\textbf{Herramientas:} Git, GitHub, Excel \\
+\smallskip
+\textbf{Herramientas:} Git, GitHub, Excel
 
-\textbf{Librerías:} Pandas, NumPy, Scikit-learn \\
+\smallskip
+\textbf{Librerías:} Pandas, NumPy, Scikit-learn
 
+\smallskip
 \textbf{Áreas:} Machine Learning, Time Series, Credit Risk, Quantitative Finance
 
 \cvsection{Áreas de Interés}
 
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 \item Ciencia de datos
 \item Machine learning aplicado
 \item Finanzas cuantitativas
@@ -128,7 +137,7 @@ Formación con enfoque en análisis cuantitativo, programación, estadística y 
 
 \cvsection{Herramientas y Métodos}
 
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 \item Modelos de clasificación
 \item Validación cruzada
 \item Feature engineering
@@ -147,7 +156,7 @@ Formación con enfoque en análisis cuantitativo, programación, estadística y 
 
 \cvsection{Enlaces}
 
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 \item LinkedIn: linkedin.com/in/lenin-quezada-6b77a63a8
 \item GitHub: github.com/Lenon11
 \end{itemize}

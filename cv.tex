@@ -18,7 +18,6 @@
 \definecolor{LightGrey}{HTML}{666666}
 \definecolor{DarkBlue}{HTML}{0F3D5E}
 \definecolor{AccentBlue}{HTML}{1D70A2}
-\definecolor{SoftBlue}{HTML}{DCEAF5}
 
 \colorlet{name}{black}
 \colorlet{tagline}{AccentBlue}
@@ -32,24 +31,14 @@
 \renewcommand{\namefont}{\Large\bfseries}
 \renewcommand{\personalinfofont}{\footnotesize}
 \renewcommand{\cvsectionfont}{\large\bfseries}
-\renewcommand{\cvsubsectionfont}{\normalsize\bfseries}
-
-\renewcommand{\cvItemMarker}{{\small\textbullet}}
-\renewcommand{\cvRatingMarker}{\faCircle}
-
-\renewcommand{\locationname}{Ubicación}
-\renewcommand{\datename}{Fecha}
 
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{0pt}
 
-\AtBeginEnvironment{itemize}{\vspace{-4pt}}
-\AtEndEnvironment{itemize}{\vspace{-4pt}}
-
 \begin{document}
 
 \name{Lenin Adair Quezada Gómez}
-\tagline{Estudiante de Ingeniería Financiera con enfoque en Quantitative Finance, Data Science y Machine Learning}
+\tagline{Ingeniería Financiera | Data Science | Quantitative Finance}
 
 \personalinfo{
   \email{quezada.lenin@outlook.com}
@@ -65,54 +54,61 @@
 
 \begin{paracol}{2}
 
+%==================== PERFIL ====================
+
 \cvsection{Perfil}
 
-Estudiante de \textbf{Ingeniería Financiera en ITESO} con interés en \textbf{ciencia de datos, machine learning, finanzas cuantitativas y visión artificial}. He desarrollado proyectos técnicos en \textbf{Python} enfocados en análisis financiero, riesgo crediticio, modelado estadístico y sistemas de clasificación basados en datos. Busco aplicar herramientas cuantitativas y de programación para resolver problemas reales en finanzas e ingeniería.
+Estudiante de \textbf{Ingeniería Financiera en ITESO} con enfoque en \textbf{ciencia de datos, machine learning y finanzas cuantitativas}. Experiencia en desarrollo de modelos aplicados, análisis de riesgo y construcción de soluciones basadas en datos. Interesado en roles donde pueda aplicar herramientas analíticas para resolver problemas reales.
 
-\cvsection{Proyectos Destacados}
+%==================== PROYECTOS ====================
+
+\cvsection{Proyectos}
+
+\cvevent{Mean-Reverting Portfolio}{PAP – Proyecto de Aplicación Profesional (en curso)}{}{}
+\begin{itemize}
+\item Desarrollo de estrategia de trading basada en reversión a la media entre activos financieros.
+\item Construcción y evaluación de portafolios mediante datos históricos y validación en distintos periodos.
+\item Implementación de modelos para estabilizar señales ante ruido y cambios de mercado.
+\end{itemize}
+
+\divider
+
+\cvevent{Modelo de Riesgo Crediticio}{Proyecto académico y personal}{}{}
+\begin{itemize}
+\item Desarrollo de modelos para clasificar clientes según su riesgo de incumplimiento.
+\item Preparación de datos y generación de variables relevantes para mejorar la predicción.
+\item Construcción de un score interpretable para apoyar la toma de decisiones.
+\end{itemize}
+
+\divider
 
 \cvevent{Valuación Crediticia de Empresas}{Proyecto académico presentado en Citi Banamex}{}{}
-\begin{itemize}\itemsep2pt
-\item Desarrollo de un análisis de \textbf{riesgo crediticio corporativo} a partir de indicadores financieros.
-\item Implementación e interpretación de ratios financieros e indicadores como el \textbf{Altman Z-Score} para apoyar decisiones de crédito.
-\item Integración de métricas financieras y criterios de evaluación para clasificar empresas según su perfil de riesgo.
+\begin{itemize}
+\item Análisis de una empresa cotizada, considerando su modelo de negocio y desempeño financiero.
+\item Evaluación mediante indicadores financieros y comparación con empresas del mismo sector.
+\item Elaboración de recomendación de crédito y definición de condiciones de financiamiento.
 \end{itemize}
 
 \divider
 
-\cvevent{Mean-Reverting Portfolio}{Investigación en finanzas cuantitativas}{}{}
-\begin{itemize}\itemsep2pt
-\item Construcción de portafolios con reversión a la media usando \textbf{Engle-Granger} y \textbf{Johansen}.
-\item Implementación de portafolios sparse con \textbf{Lasso (L1 regularization)}.
-\item Estimación de \textbf{half-life} mediante procesos \textbf{Ornstein-Uhlenbeck} y validación out-of-sample.
+\cvevent{Sistema de Visión Artificial}{Proyecto en desarrollo}{}{}
+\begin{itemize}
+\item Desarrollo de sistema en \textbf{MATLAB} para clasificación de objetos en banda transportadora.
+\item Procesamiento de imágenes considerando condiciones reales como iluminación y velocidad.
+\item Construcción de dataset propio y pruebas de detección en tiempo real.
 \end{itemize}
 
-\divider
-
-\cvevent{Modelado de Riesgo Crediticio con Machine Learning}{Proyecto académico y personal}{}{}
-\begin{itemize}\itemsep2pt
-\item Implementación de modelos de clasificación como \textbf{regresión logística, árboles de decisión y random forest}.
-\item Trabajo con \textbf{feature engineering}, validación y análisis de desempeño.
-\item Construcción de scores interpretables para clasificación de riesgo.
-\end{itemize}
-
-\divider
-
-\cvevent{Sistema de Visión Artificial para Clasificación de Objetos}{Proyecto actual en desarrollo}{}{}
-\begin{itemize}\itemsep2pt
-\item Desarrollo de un sistema de \textbf{visión artificial} aplicado a automatización industrial.
-\item Captura y procesamiento de imágenes con \textbf{Python y OpenCV}.
-\item Construcción de dataset propio y pruebas de clasificación de objetos sobre banda transportadora.
-\end{itemize}
+%==================== EDUCACIÓN ====================
 
 \cvsection{Educación}
 
 \cvevent{Ingeniería Financiera}{ITESO Universidad Jesuita de Guadalajara}{2022 -- Actualidad}{}
-Formación con enfoque en análisis cuantitativo, programación, estadística y finanzas.
+
+%==================== COLUMNA DERECHA ====================
 
 \switchcolumn
 
-\cvsection{Habilidades Técnicas}
+\cvsection{Habilidades}
 
 \textbf{Lenguajes:} Python, SQL, MATLAB
 
@@ -123,43 +119,26 @@ Formación con enfoque en análisis cuantitativo, programación, estadística y 
 \textbf{Librerías:} Pandas, NumPy, Scikit-learn
 
 \smallskip
-\textbf{Áreas:} Machine Learning, Time Series, Credit Risk, Quantitative Finance
+\textbf{Áreas:} Ciencia de datos, Machine Learning, Finanzas cuantitativas, Análisis de riesgo
+
+%==================== INTERESES ====================
 
 \cvsection{Áreas de Interés}
 
-\begin{itemize}\itemsep2pt
+\begin{itemize}
 \item Ciencia de datos
 \item Machine learning aplicado
 \item Finanzas cuantitativas
 \item Riesgo crediticio
-\item Visión artificial
 \end{itemize}
 
-\cvsection{Herramientas y Métodos}
-
-\begin{itemize}\itemsep2pt
-\item Modelos de clasificación
-\item Validación cruzada
-\item Feature engineering
-\item Cointegración
-\item Backtesting básico
-\item Procesamiento de imágenes
-\end{itemize}
+%==================== IDIOMAS ====================
 
 \cvsection{Idiomas}
 
 \cvskill{Español}{5}
 \divider
 \cvskill{Inglés}{4}
-
-\medskip
-
-\cvsection{Enlaces}
-
-\begin{itemize}\itemsep2pt
-\item LinkedIn: linkedin.com/in/lenin-quezada-6b77a63a8
-\item GitHub: github.com/Lenon11
-\end{itemize}
 
 \end{paracol}
 

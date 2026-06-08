@@ -1,8 +1,45 @@
 \documentclass[10pt,a4paper,withhyper]{altacv}
 
-\geometry{left=1.0cm,right=1.0cm,top=1.0cm,bottom=1.0cm,columnsep=0.8cm}
+\geometry{left=1.0cm,right=1.0cm,top=0.8cm,bottom=0.7cm,columnsep=0.8cm}
 
 \usepackage{paracol}
+\usepackage{enumitem}
+
+% ---- Optimización de espacio (mismo estilo, ritmo vertical más compacto) ----
+% Compactar listas
+\setlist[itemize]{leftmargin=1.2em, topsep=1pt, partopsep=0pt, itemsep=1pt, parsep=0pt}
+
+% Encabezado de sección con menos aire (bigskip -> medskip, medskip -> smallskip)
+\renewcommand{\cvsection}[2][]{%
+  \nointerlineskip\smallskip%
+  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
+  {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1.2ex]%
+  {\color{headingrule}\rule{\linewidth}{2pt}\par}\smallskip
+}
+
+% Evento (puesto/proyecto) con menos espacio al cierre
+\renewcommand{\cvevent}[4]{%
+  {\large\color{emphasis}#1\par}
+  \smallskip\normalsize
+  \ifstrequal{#2}{}{}{%
+  \textbf{\color{accent}#2}\par
+  \smallskip}%
+  \ifstrequal{#3}{}{}{%
+    {\small\makebox[0.5\linewidth][l]%
+      {\BeginAccSupp{method=pdfstringdef,ActualText={\datename:}}\cvDateMarker\EndAccSupp{}~#3}%
+    }}%
+  \ifstrequal{#4}{}{}{%
+    {\small\makebox[0.5\linewidth][l]%
+      {\BeginAccSupp{method=pdfstringdef,ActualText={\locationname:}}\cvLocationMarker\EndAccSupp{}~#4}%
+    }}\par
+  \smallskip\normalsize
+}
+
+% Separador entre proyectos más ajustado
+\renewcommand{\divider}{\smallskip\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\smallskip}
+
+% Interlineado ligeramente más compacto
+\linespread{0.95}
 
 \iftutex
   \setmainfont{Roboto Slab}
@@ -50,59 +87,71 @@
 
 \makecvheader
 
-\columnratio{0.68}
-
-\begin{paracol}{2}
-
-%==================== PERFIL ====================
+%==================== PERFIL (ancho completo) ====================
 
 \cvsection{Perfil}
 
-Estudiante de \textbf{Ingeniería Financiera en ITESO} con enfoque en \textbf{ciencia de datos, machine learning y finanzas cuantitativas}. Experiencia en desarrollo de modelos aplicados, análisis de riesgo y construcción de soluciones basadas en datos. Interesado en roles donde pueda aplicar herramientas analíticas para resolver problemas reales.
+Estudiante de \textbf{Ingeniería Financiera en ITESO} con enfoque en \textbf{análisis financiero, riesgo crediticio y finanzas cuantitativas}, complementado con \textbf{ciencia de datos y machine learning}. Experiencia en el análisis de estados financieros de empresas públicas y en el desarrollo de modelos aplicados basados en datos. Interesado en roles donde pueda aplicar herramientas analíticas para resolver problemas reales.
+
+\columnratio{0.72}
+
+\begin{paracol}{2}
+
+%==================== EXPERIENCIA ====================
+
+\cvsection{Experiencia Laboral}
+
+\cvevent{Analista Financiero}{World Vest Base}{Mayo 2026 -- Actualidad}{}
+\begin{itemize}
+\item Evaluación integral de empresas públicas, comprendiendo el análisis de sus estados financieros y de factores cualitativos determinantes para su desempeño.
+\item Estructuración y depuración de información corporativa, garantizando la integridad y vigencia de la base de datos institucional.
+\item Generación de reportes analíticos sobre la situación de cada empresa, proporcionando información estratégica que fundamenta las decisiones de inversión.
+\end{itemize}
 
 %==================== PROYECTOS ====================
 
 \cvsection{Proyectos}
 
-\cvevent{Mean-Reverting Portfolio}{PAP – Proyecto de Aplicación Profesional (en curso)}{}{}
+\cvevent{Mean-Reverting Portfolio}{PAP – Proyecto de Aplicación Profesional}{}{}
 \begin{itemize}
-\item Desarrollo de estrategia de trading basada en reversión a la media entre activos financieros.
-\item Construcción y evaluación de portafolios mediante datos históricos y validación en distintos periodos.
-\item Implementación de modelos para estabilizar señales ante ruido y cambios de mercado.
+\item Construcción de portafolios con grupos de activos cuyos precios tienden a moverse juntos y regresar a un valor de equilibrio.
+\item Definición de reglas de compra y venta y validación de la estrategia con datos históricos en distintos periodos de mercado.
+\item \textbf{Resultado:} alternativa de inversión de bajo riesgo con \textbf{$\sim$8.8\% de rendimiento anual}, Sharpe de \textbf{1.18} y máximo drawdown de 18\%.
 \end{itemize}
 
 \divider
 
 \cvevent{Modelo de Riesgo Crediticio}{Proyecto académico y personal}{}{}
 \begin{itemize}
-\item Desarrollo de modelos para clasificar clientes según su riesgo de incumplimiento.
-\item Preparación de datos y generación de variables relevantes para mejorar la predicción.
-\item Construcción de un score interpretable para apoyar la toma de decisiones.
+\item Desarrollo de modelos para clasificar clientes según su riesgo de incumplimiento, con preparación de datos y selección de variables relevantes.
+\item \textbf{Resultado:} score interpretable con \textbf{$\sim$78\% de accuracy} y \textbf{ROC-AUC de 0.75} en datos de prueba, bien calibrado frente a la tasa real de incumplimiento.
 \end{itemize}
 
 \divider
 
 \cvevent{Valuación Crediticia de Empresas}{Proyecto académico presentado en Citi Banamex}{}{}
 \begin{itemize}
-\item Análisis de una empresa cotizada, considerando su modelo de negocio y desempeño financiero.
-\item Evaluación mediante indicadores financieros y comparación con empresas del mismo sector.
-\item Elaboración de recomendación de crédito y definición de condiciones de financiamiento.
+\item Análisis de una empresa cotizada mediante indicadores financieros y comparación con empresas del mismo sector.
+\item \textbf{Resultado:} recomendación de crédito con condiciones de financiamiento propuestas, presentada ante Citi Banamex.
 \end{itemize}
 
 \divider
 
-\cvevent{Sistema de Visión Artificial}{Proyecto en desarrollo}{}{}
+\cvevent{Sistema de Visión Artificial}{}{}{}
 \begin{itemize}
-\item Desarrollo de sistema en \textbf{MATLAB} para clasificación de objetos en banda transportadora.
-\item Procesamiento de imágenes considerando condiciones reales como iluminación y velocidad.
-\item Construcción de dataset propio y pruebas de detección en tiempo real.
+\item Desarrollo integral de un sistema de clasificación de objetos mediante \textbf{redes neuronales convolucionales (CNN)} (3 o más clases), con ingesta de un dataset propio de $\sim$4{,}000 imágenes y detección en tiempo real.
+\item \textbf{Resultado:} precisión (accuracy) de aproximadamente \textbf{92\%}, con resultados sólidos y consistentes.
 \end{itemize}
 
 %==================== EDUCACIÓN ====================
 
 \cvsection{Educación}
 
-\cvevent{Ingeniería Financiera}{ITESO Universidad Jesuita de Guadalajara}{2022 -- Actualidad}{}
+\cvevent{Ingeniería Financiera}{ITESO Universidad Jesuita de Guadalajara}{2022 -- Ago. 2026}{}
+\begin{itemize}
+\item \textbf{Promedio: 94.6 / 100.}
+\item Áreas relevantes: finanzas cuantitativas, riesgo de crédito, econometría y análisis de datos.
+\end{itemize}
 
 %==================== COLUMNA DERECHA ====================
 
@@ -110,35 +159,37 @@ Estudiante de \textbf{Ingeniería Financiera en ITESO} con enfoque en \textbf{ci
 
 \cvsection{Habilidades}
 
-\textbf{Lenguajes:} Python, SQL, MATLAB
+\textbf{Lenguajes:} Python, SQL, MATLAB, TypeScript, HTML, CSS
 
 \smallskip
-\textbf{Herramientas:} Git, GitHub, Excel
+\textbf{Herramientas:} React, Docker, Power BI, Git, GitHub, Linux, Terminal (CLI)
 
 \smallskip
 \textbf{Librerías:} Pandas, NumPy, Scikit-learn
 
 \smallskip
-\textbf{Áreas:} Ciencia de datos, Machine Learning, Finanzas cuantitativas, Análisis de riesgo
+\textbf{IA aplicada:} Claude Code, Codex e integración de IA en el flujo de trabajo
 
-%==================== INTERESES ====================
+%==================== ÁREAS DE CONOCIMIENTO ====================
 
-\cvsection{Áreas de Interés}
+\cvsection{Áreas de Conocimiento}
 
 \begin{itemize}
-\item Ciencia de datos
-\item Machine learning aplicado
-\item Finanzas cuantitativas
+\item Análisis financiero
 \item Riesgo crediticio
+\item Análisis de datos
+\item Finanzas cuantitativas
+\item Machine learning aplicado
 \end{itemize}
 
 %==================== IDIOMAS ====================
 
 \cvsection{Idiomas}
 
-\cvskill{Español}{5}
-\divider
-\cvskill{Inglés}{4}
+\textbf{Español:} Nativo
+
+\smallskip
+\textbf{Inglés:} Fluency English
 
 \end{paracol}
 

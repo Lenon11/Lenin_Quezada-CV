@@ -1,9 +1,27 @@
+% ============================================================================
+%  CV bilingüe — UN SOLO ARCHIVO genera español e inglés.
+%
+%  - Compilación normal (cv.tex)            -> ESPAÑOL (por defecto)
+%  - Compilación con \def\CVEN{} antes      -> INGLÉS
+%    (el workflow crea un wrapper "cv_en.tex" que hace exactamente eso)
+%
+%  Para editar: usa  \tr{texto en español}{text in English}
+%  Ambos idiomas viven juntos, así nunca se desincronizan.
+% ============================================================================
+
+% ---- Detección de idioma (debe ir ANTES de \documentclass) ----
+\newif\ifEN
+\ifdefined\CVEN\ENtrue\fi
+
 \documentclass[10pt,a4paper,withhyper]{altacv}
 
 \geometry{left=1.0cm,right=1.0cm,top=0.8cm,bottom=0.7cm,columnsep=0.8cm}
 
 \usepackage{paracol}
 \usepackage{enumitem}
+
+% ---- Macro de traducción: \tr{español}{inglés} ----
+\newcommand{\tr}[2]{\ifEN #2\else #1\fi}
 
 % ---- Optimización de espacio (mismo estilo, ritmo vertical más compacto) ----
 % Compactar listas
@@ -75,12 +93,12 @@
 \begin{document}
 
 \name{Lenin Adair Quezada Gómez}
-\tagline{Ingeniería Financiera | Data Science | Quantitative Finance}
+\tagline{\tr{Ingeniería Financiera}{Financial Engineering} | Data Science | Quantitative Finance}
 
 \personalinfo{
   \email{quezada.lenin@outlook.com}
   \phone{+52 33 14185861}
-  \location{Guadalajara, Jalisco, México}
+  \location{\tr{Guadalajara, Jalisco, México}{Guadalajara, Jalisco, Mexico}}
   \linkedin{lenin-quezada-6b77a63a8}
   \github{Lenon11}
 }
@@ -89,9 +107,13 @@
 
 %==================== PERFIL (ancho completo) ====================
 
-\cvsection{Perfil}
+\cvsection{\tr{Perfil}{Profile}}
 
-Estudiante de \textbf{Ingeniería Financiera en ITESO} con enfoque en \textbf{análisis financiero, riesgo crediticio y finanzas cuantitativas}, complementado con \textbf{ciencia de datos y machine learning}. Experiencia en el análisis de estados financieros de empresas públicas y en el desarrollo de modelos aplicados basados en datos. Interesado en roles donde pueda aplicar herramientas analíticas para resolver problemas reales.
+\tr{%
+Estudiante de \textbf{Ingeniería Financiera en ITESO} con enfoque en \textbf{análisis financiero, riesgo crediticio y finanzas cuantitativas}, complementado con \textbf{ciencia de datos y machine learning}. Experiencia en el análisis de estados financieros de empresas públicas y en el desarrollo de modelos aplicados basados en datos. Interesado en roles donde pueda aplicar herramientas analíticas para resolver problemas reales.%
+}{%
+\textbf{Financial Engineering student at ITESO} focused on \textbf{financial analysis, credit risk, and quantitative finance}, complemented by \textbf{data science and machine learning}. Experienced in analyzing the financial statements of public companies and in developing applied, data-driven models. Interested in roles where I can apply analytical tools to solve real-world problems.%
+}
 
 \columnratio{0.72}
 
@@ -99,97 +121,97 @@ Estudiante de \textbf{Ingeniería Financiera en ITESO} con enfoque en \textbf{an
 
 %==================== EXPERIENCIA ====================
 
-\cvsection{Experiencia Laboral}
+\cvsection{\tr{Experiencia Laboral}{Work Experience}}
 
-\cvevent{Analista Financiero}{World Vest Base}{Mayo 2026 -- Actualidad}{}
+\cvevent{\tr{Analista Financiero}{Financial Analyst}}{World Vest Base}{\tr{Mayo 2026 -- Actualidad}{May 2026 -- Present}}{}
 \begin{itemize}
-\item Evaluación integral de empresas públicas, comprendiendo el análisis de sus estados financieros y de factores cualitativos determinantes para su desempeño.
-\item Estructuración y depuración de información corporativa, garantizando la integridad y vigencia de la base de datos institucional.
-\item Generación de reportes analíticos sobre la situación de cada empresa, proporcionando información estratégica que fundamenta las decisiones de inversión.
+\item \tr{Evaluación integral de empresas públicas, comprendiendo el análisis de sus estados financieros y de factores cualitativos determinantes para su desempeño.}{Comprehensive evaluation of public companies, including the analysis of their financial statements and of the qualitative factors that drive their performance.}
+\item \tr{Estructuración y depuración de información corporativa, garantizando la integridad y vigencia de la base de datos institucional.}{Structuring and cleaning of corporate information, ensuring the integrity and accuracy of the institutional database.}
+\item \tr{Generación de reportes analíticos sobre la situación de cada empresa, proporcionando información estratégica que fundamenta las decisiones de inversión.}{Generation of analytical reports on each company's situation, providing strategic insights that support investment decisions.}
 \end{itemize}
 
 %==================== PROYECTOS ====================
 
-\cvsection{Proyectos}
+\cvsection{\tr{Proyectos}{Projects}}
 
-\cvevent{Mean-Reverting Portfolio}{PAP – Proyecto de Aplicación Profesional}{}{}
+\cvevent{Mean-Reverting Portfolio}{\tr{PAP – Proyecto de Aplicación Profesional}{PAP – Professional Application Project}}{}{}
 \begin{itemize}
-\item Construcción de portafolios con grupos de activos cuyos precios tienden a moverse juntos y regresar a un valor de equilibrio.
-\item Definición de reglas de compra y venta y validación de la estrategia con datos históricos en distintos periodos de mercado.
-\item \textbf{Resultado:} alternativa de inversión de bajo riesgo con \textbf{$\sim$8.8\% de rendimiento anual}, Sharpe de \textbf{1.18} y máximo drawdown de 18\%.
+\item \tr{Construcción de portafolios con grupos de activos cuyos precios tienden a moverse juntos y regresar a un valor de equilibrio.}{Construction of portfolios using groups of assets whose prices tend to move together and revert to an equilibrium value.}
+\item \tr{Definición de reglas de compra y venta y validación de la estrategia con datos históricos en distintos periodos de mercado.}{Definition of buy and sell rules and validation of the strategy on historical data across different market periods.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{alternativa de inversión de bajo riesgo con \textbf{$\sim$8.8\% de rendimiento anual}, Sharpe de \textbf{1.18} y máximo drawdown de 18\%.}{low-risk investment alternative with \textbf{$\sim$8.8\% annual return}, a Sharpe of \textbf{1.18}, and a maximum drawdown of 18\%.}
 \end{itemize}
 
 \divider
 
-\cvevent{Modelo de Riesgo Crediticio}{Proyecto académico y personal}{}{}
+\cvevent{\tr{Modelo de Riesgo Crediticio}{Credit Risk Model}}{\tr{Proyecto académico y personal}{Academic and personal project}}{}{}
 \begin{itemize}
-\item Desarrollo de modelos para clasificar clientes según su riesgo de incumplimiento, con preparación de datos y selección de variables relevantes.
-\item \textbf{Resultado:} score interpretable con \textbf{$\sim$78\% de accuracy} y \textbf{ROC-AUC de 0.75} en datos de prueba, bien calibrado frente a la tasa real de incumplimiento.
+\item \tr{Desarrollo de modelos para clasificar clientes según su riesgo de incumplimiento, con preparación de datos y selección de variables relevantes.}{Development of models to classify clients by their default risk, including data preparation and selection of relevant variables.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{score interpretable con \textbf{$\sim$78\% de accuracy} y \textbf{ROC-AUC de 0.75} en datos de prueba, bien calibrado frente a la tasa real de incumplimiento.}{interpretable score with \textbf{$\sim$78\% accuracy} and \textbf{ROC-AUC of 0.75} on test data, well calibrated against the actual default rate.}
 \end{itemize}
 
 \divider
 
-\cvevent{Valuación Crediticia de Empresas}{Proyecto académico presentado en Citi Banamex}{}{}
+\cvevent{\tr{Valuación Crediticia de Empresas}{Corporate Credit Valuation}}{\tr{Proyecto académico presentado en Citi Banamex}{Academic project presented at Citi Banamex}}{}{}
 \begin{itemize}
-\item Análisis de una empresa cotizada mediante indicadores financieros y comparación con empresas del mismo sector.
-\item \textbf{Resultado:} recomendación de crédito con condiciones de financiamiento propuestas, presentada ante Citi Banamex.
+\item \tr{Análisis de una empresa cotizada mediante indicadores financieros y comparación con empresas del mismo sector.}{Analysis of a publicly traded company using financial indicators and benchmarking against peers in the same sector.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{recomendación de crédito con condiciones de financiamiento propuestas, presentada ante Citi Banamex.}{credit recommendation with proposed financing terms, presented to Citi Banamex.}
 \end{itemize}
 
 \divider
 
-\cvevent{Sistema de Visión Artificial}{}{}{}
+\cvevent{\tr{Sistema de Visión Artificial}{Computer Vision System}}{}{}{}
 \begin{itemize}
-\item Desarrollo integral de un sistema de clasificación de objetos mediante \textbf{redes neuronales convolucionales (CNN)} (3 o más clases), con ingesta de un dataset propio de $\sim$4{,}000 imágenes y detección en tiempo real.
-\item \textbf{Resultado:} precisión (accuracy) de aproximadamente \textbf{92\%}, con resultados sólidos y consistentes.
+\item \tr{Desarrollo integral de un sistema de clasificación de objetos mediante \textbf{redes neuronales convolucionales (CNN)} (3 o más clases), con ingesta de un dataset propio de $\sim$4{,}000 imágenes y detección en tiempo real.}{End-to-end development of an object classification system using \textbf{convolutional neural networks (CNN)} (3 or more classes), ingesting a custom dataset of $\sim$4{,}000 images with real-time detection.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{precisión (accuracy) de aproximadamente \textbf{92\%}, con resultados sólidos y consistentes.}{accuracy of approximately \textbf{92\%}, with solid and consistent results.}
 \end{itemize}
 
 %==================== EDUCACIÓN ====================
 
-\cvsection{Educación}
+\cvsection{\tr{Educación}{Education}}
 
-\cvevent{Ingeniería Financiera}{ITESO Universidad Jesuita de Guadalajara}{2022 -- Ago. 2026}{}
+\cvevent{\tr{Ingeniería Financiera}{Financial Engineering}}{ITESO Universidad Jesuita de Guadalajara}{\tr{2022 -- Ago. 2026}{2022 -- Aug. 2026}}{}
 \begin{itemize}
-\item \textbf{Promedio: 94.6 / 100.}
-\item Áreas relevantes: finanzas cuantitativas, riesgo de crédito, econometría y análisis de datos.
+\item \textbf{\tr{Promedio: 94.6 / 100.}{GPA: 94.6 / 100.}}
+\item \tr{Áreas relevantes: finanzas cuantitativas, riesgo de crédito, econometría y análisis de datos.}{Relevant areas: quantitative finance, credit risk, econometrics, and data analysis.}
 \end{itemize}
 
 %==================== COLUMNA DERECHA ====================
 
 \switchcolumn
 
-\cvsection{Habilidades}
+\cvsection{\tr{Habilidades}{Skills}}
 
-\textbf{Lenguajes:} Python, SQL, MATLAB, TypeScript, HTML, CSS
-
-\smallskip
-\textbf{Herramientas:} React, Docker, Power BI, Git, GitHub, Linux, Terminal (CLI)
+\textbf{\tr{Lenguajes:}{Languages:}} Python, SQL, MATLAB, TypeScript, HTML, CSS
 
 \smallskip
-\textbf{Librerías:} Pandas, NumPy, Scikit-learn
+\textbf{\tr{Herramientas:}{Tools:}} React, Docker, Power BI, Git, GitHub, Linux, Terminal (CLI)
 
 \smallskip
-\textbf{IA aplicada:} Claude Code, Codex e integración de IA en el flujo de trabajo
+\textbf{\tr{Librerías:}{Libraries:}} Pandas, NumPy, Scikit-learn
+
+\smallskip
+\textbf{\tr{IA aplicada:}{Applied AI:}} \tr{Claude Code, Codex e integración de IA en el flujo de trabajo}{Claude Code, Codex, and AI integration into the workflow}
 
 %==================== ÁREAS DE CONOCIMIENTO ====================
 
-\cvsection{Áreas de Conocimiento}
+\cvsection{\tr{Áreas de Conocimiento}{Areas of Expertise}}
 
 \begin{itemize}
-\item Análisis financiero
-\item Riesgo crediticio
-\item Análisis de datos
-\item Finanzas cuantitativas
-\item Machine learning aplicado
+\item \tr{Análisis financiero}{Financial analysis}
+\item \tr{Riesgo crediticio}{Credit risk}
+\item \tr{Análisis de datos}{Data analysis}
+\item \tr{Finanzas cuantitativas}{Quantitative finance}
+\item \tr{Machine learning aplicado}{Applied machine learning}
 \end{itemize}
 
 %==================== IDIOMAS ====================
 
-\cvsection{Idiomas}
+\cvsection{\tr{Idiomas}{Languages}}
 
-\textbf{Español:} Nativo
+\textbf{\tr{Español:}{Spanish:}} \tr{Nativo}{Native}
 
 \smallskip
-\textbf{Inglés:} Fluency English
+\textbf{\tr{Inglés:}{English:}} \tr{Fluency English}{Fluent}
 
 \end{paracol}
 

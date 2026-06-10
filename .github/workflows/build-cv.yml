@@ -20,32 +20,51 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile CV
+      # ---- Español (compilación directa de cv.tex) ----
+      - name: Compile CV (Spanish)
         uses: xu-cheng/latex-action@v3
         with:
           root_file: cv.tex
           latexmk_use_xelatex: false
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
-      - name: Rename generated PDF
-        run: |
-          mv cv.pdf Lenin_Quezada_CV.pdf
+      - name: Rename Spanish PDF
+        run: mv cv.pdf Lenin_Quezada_CV.pdf
 
-      - name: Upload PDF artifact
+      # ---- Inglés (wrapper que activa el flag \CVEN e incluye cv.tex) ----
+      - name: Create English wrapper
+        run: |
+          printf '\\def\\CVEN{}\n\\input{cv.tex}\n' > cv_en.tex
+
+      - name: Compile CV (English)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv_en.tex
+          latexmk_use_xelatex: false
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Rename English PDF
+        run: mv cv_en.pdf Lenin_Quezada_CV_EN.pdf
+
+      # ---- Artefactos ----
+      - name: Upload PDFs artifact
         uses: actions/upload-artifact@v4
         with:
           name: Lenin_Quezada_CV
-          path: Lenin_Quezada_CV.pdf
+          path: |
+            Lenin_Quezada_CV.pdf
+            Lenin_Quezada_CV_EN.pdf
 
-      - name: Commit updated PDF
+      # ---- Commit de ambos PDFs ----
+      - name: Commit updated PDFs
         run: |
-          if git diff --quiet -- Lenin_Quezada_CV.pdf; then
+          if git diff --quiet -- Lenin_Quezada_CV.pdf Lenin_Quezada_CV_EN.pdf; then
             echo "No PDF changes to commit"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Lenin_Quezada_CV.pdf
-          git commit -m "Auto-update CV PDF"
+          git add Lenin_Quezada_CV.pdf Lenin_Quezada_CV_EN.pdf
+          git commit -m "Auto-update CV PDFs (ES + EN)"
           git push

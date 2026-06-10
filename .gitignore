@@ -1,0 +1,16 @@
+# Temporales de compilación LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.xdv
+*.synctex.gz
+pdfa.xmpi
+
+# Wrapper de inglés generado al vuelo (lo crea el workflow / la prueba local)
+cv_en.tex
+
+# PDF intermedio antes de renombrar (los finales se llaman Lenin_Quezada_CV*.pdf)
+cv.pdf
+cv_en.pdf

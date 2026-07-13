@@ -12,13 +12,18 @@ on:
 permissions:
   contents: write
 
+# Un push nuevo cancela el build anterior en curso (evita carreras al subir los PDFs)
+concurrency:
+  group: build-cv
+  cancel-in-progress: true
+
 jobs:
   build-cv:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # ---- Español (compilación directa de cv.tex) ----
       - name: Compile CV (Spanish)
@@ -48,7 +53,7 @@ jobs:
 
       # ---- Artefactos ----
       - name: Upload PDFs artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Lenin_Quezada_CV
           path: |
@@ -67,4 +72,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add Lenin_Quezada_CV.pdf Lenin_Quezada_CV_EN.pdf
           git commit -m "Auto-update CV PDFs (ES + EN)"
+          git pull --rebase origin main
           git push

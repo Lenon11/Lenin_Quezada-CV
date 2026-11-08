@@ -17,18 +17,42 @@
 
 \geometry{left=1.0cm,right=1.0cm,top=0.8cm,bottom=0.7cm,columnsep=0.8cm}
 
+% ---- Texto extraíble para ATS: espacios reales y ligaduras (fi, fl) copiables ----
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+\ifdefined\pdfinterwordspaceon
+  \pdfinterwordspaceon
+\fi
+
 \usepackage{paracol}
 \usepackage{enumitem}
+
+% ---- Justificación y separación silábica correcta por idioma ----
+\ifEN
+  \usepackage[spanish,english]{babel}
+\else
+  \usepackage[english,spanish,es-noshorthands,es-nodecimaldot,es-noitemize]{babel}
+\fi
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{needspace}
+
+% Evitar renglones sueltos al inicio o final de página
+\clubpenalty=10000
+\widowpenalty=10000
 
 % ---- Macro de traducción: \tr{español}{inglés} ----
 \newcommand{\tr}[2]{\ifEN #2\else #1\fi}
 
 % ---- Optimización de espacio (mismo estilo, ritmo vertical más compacto) ----
 % Compactar listas
-\setlist[itemize]{leftmargin=1.2em, topsep=1pt, partopsep=0pt, itemsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.2em, topsep=1pt, partopsep=0pt, itemsep=3pt, parsep=0pt}
 
 % Encabezado de sección con menos aire (bigskip -> medskip, medskip -> smallskip)
 \renewcommand{\cvsection}[2][]{%
+  \Needspace{8\baselineskip}%
   \nointerlineskip\smallskip%
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
   {\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1.2ex]%
@@ -37,6 +61,7 @@
 
 % Evento (puesto/proyecto) con menos espacio al cierre
 \renewcommand{\cvevent}[4]{%
+  \Needspace{6\baselineskip}%
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
   \ifstrequal{#2}{}{}{%
@@ -91,9 +116,10 @@
 \setlength{\parindent}{0pt}
 
 \begin{document}
+\justifying
 
 \name{Lenin Adair Quezada Gómez}
-\tagline{\tr{Ingeniería Financiera}{Financial Engineering} | Data Science | Quantitative Finance}
+\tagline{\tr{Ingeniería Financiera}{Financial Engineering} | Business Intelligence | Data Science | Software Development}
 
 \personalinfo{
   \email{quezada.lenin@outlook.com}
@@ -105,65 +131,20 @@
 
 \makecvheader
 
-%==================== PERFIL (ancho completo) ====================
-
-\cvsection{\tr{Perfil}{Profile}}
-
-\tr{%
-\textbf{Ingeniero Financiero} con enfoque en \textbf{análisis financiero, riesgo crediticio y finanzas cuantitativas}, complementado con \textbf{ciencia de datos y machine learning}. Experiencia en el análisis de estados financieros de empresas públicas y en el desarrollo de modelos aplicados basados en datos. Interesado en roles donde pueda aplicar herramientas analíticas para resolver problemas reales.%
-}{%
-\textbf{Financial Engineer} focused on \textbf{financial analysis, credit risk, and quantitative finance}, complemented by \textbf{data science and machine learning}. Experienced in analyzing the financial statements of public companies and in developing applied, data-driven models. Interested in roles where I can apply analytical tools to solve real-world problems.%
-}
-
 \columnratio{0.72}
 
 \begin{paracol}{2}
 
-%==================== EXPERIENCIA ====================
+%==================== PERFIL ====================
 
-\cvsection{\tr{Experiencia Laboral}{Work Experience}}
+\cvsection{\tr{Perfil}{Profile}}
 
-\cvevent{\tr{Analista Financiero}{Financial Analyst}}{World Vest Base}{\tr{Mayo 2026 -- Julio 2026}{May 2026 -- July 2026}}{}
-\begin{itemize}
-\item \tr{Evaluación integral de empresas públicas, comprendiendo el análisis de sus estados financieros y de factores cualitativos determinantes para su desempeño.}{Comprehensive evaluation of public companies, including the analysis of their financial statements and of the qualitative factors that drive their performance.}
-\item \tr{Estructuración y depuración de información corporativa, garantizando la integridad y vigencia de la base de datos institucional.}{Structuring and cleaning of corporate information, ensuring the integrity and accuracy of the institutional database.}
-\item \tr{Generación de reportes analíticos sobre la situación de cada empresa, proporcionando información estratégica que fundamenta las decisiones de inversión.}{Generation of analytical reports on each company's situation, providing strategic insights that support investment decisions.}
-\end{itemize}
+\tr{%
+\textbf{Ingeniero Financiero} con experiencia en \textbf{inteligencia de negocios, ciencia de datos y desarrollo de software}. Actualmente desarrollo tableros de Power BI, modelos de pronóstico y la asignación de cuotas de venta de millones de pesos para una marca de retail con más de 400 puntos de venta. Durante 9 años trabajé en una empresa de servicios tecnológicos, donde pasé de técnico de reparación a desarrollar el sistema para digitalizar su operación. Cuento con una formación sólida en finanzas cuantitativas y riesgo crediticio.%
+}{%
+\textbf{Financial Engineer} with experience in \textbf{business intelligence, data science, and software development}. I currently build Power BI dashboards, forecasting models, and the allocation of multi-million-peso sales quotas for a retail brand with over 400 points of sale. Over 9 years at a technology services company, I grew from repair technician to developing the system to digitize its operations. I have a strong foundation in quantitative finance and credit risk.%
+}
 
-%==================== PROYECTOS ====================
-
-\cvsection{\tr{Proyectos}{Projects}}
-
-\cvevent{Mean-Reverting Portfolio}{\tr{PAP – Proyecto de Aplicación Profesional}{PAP – Professional Application Project}}{}{}
-\begin{itemize}
-\item \tr{Construcción de portafolios con grupos de activos cuyos precios tienden a moverse juntos y regresar a un valor de equilibrio.}{Construction of portfolios using groups of assets whose prices tend to move together and revert to an equilibrium value.}
-\item \tr{Definición de reglas de compra y venta y validación de la estrategia con datos históricos en distintos periodos de mercado.}{Definition of buy and sell rules and validation of the strategy on historical data across different market periods.}
-\item \textbf{\tr{Resultado:}{Result:}} \tr{alternativa de inversión de bajo riesgo con \textbf{$\sim$8.8\% de rendimiento anual}, Sharpe de \textbf{1.18} y máximo drawdown de 18\%.}{low-risk investment alternative with \textbf{$\sim$8.8\% annual return}, a Sharpe of \textbf{1.18}, and a maximum drawdown of 18\%.}
-\end{itemize}
-
-\divider
-
-\cvevent{\tr{Modelo de Riesgo Crediticio}{Credit Risk Model}}{\tr{Proyecto académico y personal}{Academic and personal project}}{}{}
-\begin{itemize}
-\item \tr{Desarrollo de modelos para clasificar clientes según su riesgo de incumplimiento, con preparación de datos y selección de variables relevantes.}{Development of models to classify clients by their default risk, including data preparation and selection of relevant variables.}
-\item \textbf{\tr{Resultado:}{Result:}} \tr{score interpretable con \textbf{$\sim$78\% de accuracy} y \textbf{ROC-AUC de 0.75} en datos de prueba, bien calibrado frente a la tasa real de incumplimiento.}{interpretable score with \textbf{$\sim$78\% accuracy} and \textbf{ROC-AUC of 0.75} on test data, well calibrated against the actual default rate.}
-\end{itemize}
-
-\divider
-
-\cvevent{\tr{Valuación Crediticia de Empresas}{Corporate Credit Valuation}}{\tr{Proyecto académico presentado en Citi Banamex}{Academic project presented at Citi Banamex}}{}{}
-\begin{itemize}
-\item \tr{Análisis de una empresa cotizada mediante indicadores financieros y comparación con empresas del mismo sector.}{Analysis of a publicly traded company using financial indicators and benchmarking against peers in the same sector.}
-\item \textbf{\tr{Resultado:}{Result:}} \tr{recomendación de crédito con condiciones de financiamiento propuestas, presentada ante Citi Banamex.}{credit recommendation with proposed financing terms, presented to Citi Banamex.}
-\end{itemize}
-
-\divider
-
-\cvevent{\tr{Sistema de Visión Artificial}{Computer Vision System}}{}{}{}
-\begin{itemize}
-\item \tr{Desarrollo integral de un sistema de clasificación de objetos mediante \textbf{redes neuronales convolucionales (CNN)} (3 o más clases), con ingesta de un dataset propio de $\sim$4{,}000 imágenes y detección en tiempo real.}{End-to-end development of an object classification system using \textbf{convolutional neural networks (CNN)} (3 or more classes), ingesting a custom dataset of $\sim$4{,}000 images with real-time detection.}
-\item \textbf{\tr{Resultado:}{Result:}} \tr{precisión (accuracy) de aproximadamente \textbf{92\%}, con resultados sólidos y consistentes.}{accuracy of approximately \textbf{92\%}, with solid and consistent results.}
-\end{itemize}
 
 %==================== EDUCACIÓN ====================
 
@@ -172,37 +153,40 @@
 \cvevent{\tr{Ingeniería Financiera}{Financial Engineering}}{ITESO Universidad Jesuita de Guadalajara}{2022 -- 2026}{}
 \begin{itemize}
 \item \textbf{\tr{Promedio: 95.0 / 100.}{GPA: 95.0 / 100.}}
-\item \tr{Áreas relevantes: finanzas cuantitativas, riesgo de crédito, econometría y análisis de datos.}{Relevant areas: quantitative finance, credit risk, econometrics, and data analysis.}
+\item \tr{Áreas relevantes: finanzas cuantitativas, riesgo de crédito, econometría, machine learning, ciencia de datos, optimización y programación.}{Relevant areas: quantitative finance, credit risk, econometrics, machine learning, data science, optimization, and programming.}
+\end{itemize}
+
+\divider
+
+\cvevent{\tr{Tecnólogo en Sistemas Informáticos}{Computer Systems Technologist}}{Escuela Politécnica de Guadalajara}{2018 -- 2022}{}
+\begin{itemize}
+\item \textbf{\tr{Promedio: 96.0 / 100.}{GPA: 96.0 / 100.}}
+\item \tr{Formación en programación en C y desarrollo web (HTML, CSS y JavaScript).}{Training in C programming and web development (HTML, CSS, and JavaScript).}
 \end{itemize}
 
 %==================== COLUMNA DERECHA ====================
 
 \switchcolumn
+\RaggedRight\hyphenpenalty=10000\exhyphenpenalty=10000
 
 \cvsection{\tr{Habilidades}{Skills}}
 
-\textbf{\tr{Lenguajes:}{Languages:}} Python, SQL, MATLAB, TypeScript, HTML, CSS
+\textbf{\tr{Lenguajes:}{Languages:}} Python, SQL, R, MATLAB, JavaScript, TypeScript, HTML, CSS
 
 \smallskip
-\textbf{\tr{Herramientas:}{Tools:}} \tr{Excel (avanzado)}{Excel (advanced)}, React, Docker, Power BI, Git, GitHub, Linux, Terminal (CLI)
+\textbf{\tr{Herramientas:}{Tools:}} \tr{Excel (avanzado, Solver)}{Excel (advanced, Solver)}, Power BI (Power Query, DAX), SQL Server, PostgreSQL, React, Django, Docker, Git, GitHub, Linux, Terminal (CLI)
 
 \smallskip
-\textbf{\tr{Librerías:}{Libraries:}} Pandas, NumPy, Matplotlib, Seaborn, SciPy, Statsmodels, Scikit-learn, TensorFlow, yfinance
+\textbf{\tr{Librerías:}{Libraries:}} Pandas, NumPy, Matplotlib, Seaborn, SciPy, Statsmodels, Scikit-learn, LightGBM, Prophet, TensorFlow, yfinance
 
 \smallskip
-\textbf{\tr{IA aplicada:}{Applied AI:}} \tr{Claude Code, Codex e integración de IA en el flujo de trabajo}{Claude Code, Codex, and AI integration into the workflow}
+\textbf{\tr{IA aplicada:}{Applied AI:}} \tr{integración de herramientas de IA en el flujo de desarrollo y análisis}{integration of AI tools into development and analysis workflows}
 
 %==================== ÁREAS DE CONOCIMIENTO ====================
 
-\cvsection{\tr{Áreas de Conocimiento}{Areas of Expertise}}
+\cvsection{\tr{Áreas Clave}{Key Areas}}
 
-\begin{itemize}
-\item \tr{Análisis financiero}{Financial analysis}
-\item \tr{Riesgo crediticio}{Credit risk}
-\item \tr{Análisis de datos}{Data analysis}
-\item \tr{Finanzas cuantitativas}{Quantitative finance}
-\item \tr{Machine learning aplicado}{Applied machine learning}
-\end{itemize}
+\tr{Análisis financiero}{Financial analysis} \textperiodcentered{} \tr{Riesgo crediticio}{Credit risk} \textperiodcentered{} \tr{Business Intelligence}{Business intelligence} \textperiodcentered{} \tr{Análisis de datos}{Data analysis} \textperiodcentered{} \tr{Pronóstico de venta}{Sales forecasting} \textperiodcentered{} \tr{Finanzas cuantitativas}{Quantitative finance} \textperiodcentered{} \tr{Machine learning aplicado}{Applied machine learning} \textperiodcentered{} \tr{Visión artificial}{Computer vision} \textperiodcentered{} \tr{Desarrollo de software}{Software development}
 
 %==================== IDIOMAS ====================
 
@@ -211,8 +195,85 @@
 \textbf{\tr{Español:}{Spanish:}} \tr{Nativo}{Native}
 
 \smallskip
-\textbf{\tr{Inglés:}{English:}} \tr{Fluency English}{Fluent}
+\textbf{\tr{Inglés:}{English:}} \tr{Avanzado}{Advanced}
 
 \end{paracol}
+\justifying\hyphenpenalty=50\exhyphenpenalty=50
+
+%==================== ANCHO COMPLETO ====================
+
+%==================== EXPERIENCIA ====================
+
+\cvsection{\tr{Experiencia Laboral}{Work Experience}}
+
+\cvevent{\tr{Auxiliar de Datos BI}{BI Data Associate}}{CLOE}{\tr{Agosto 2026 -- Actual}{August 2026 -- Present}}{}
+\begin{itemize}
+\item \tr{Desarrollo de \textbf{tableros de Power BI} desde cero para Retail, Comercial y Producto (SQL Server, Power Query, DAX), sustituyendo los reportes en Excel por consultas de autoservicio.}{Built \textbf{Power BI dashboards} from scratch for Retail, Commercial, and Product (SQL Server, Power Query, DAX), replacing Excel-based reports with self-service queries.}
+\item \tr{Optimización del tablero de producto mediante el rediseño del modelo de datos y almacenamiento Dual, reduciendo su tiempo de carga de \textbf{$\sim$120\,s a $\sim$40\,s ($-$67\%)} y eliminando fallos por memoria.}{Optimized the product dashboard by redesigning the data model and using Dual storage, cutting load time from \textbf{$\sim$120\,s to $\sim$40\,s ($-$67\%)} and eliminating memory failures.}
+\item \tr{Asignación de la cuota anual de venta, de millones de pesos, para \textbf{más de 370 tiendas departamentales} (Liverpool, Sears, Sanborns, El Palacio de Hierro) mediante ponderación histórica y optimización con Solver.}{Allocated the multi-million-peso annual sales quota across \textbf{370+ department stores} (Liverpool, Sears, Sanborns, El Palacio de Hierro) using historical weighting and Solver optimization.}
+\item \tr{Desarrollo en curso de un \textbf{ensamble de modelos de pronóstico} de venta diaria para \textbf{54 tiendas propias}, integrando variables de clima, tráfico aéreo, estacionalidad y días festivos, para fijar metas por tienda.}{Ongoing development of an \textbf{ensemble of forecasting models} for daily sales across \textbf{54 company-owned stores}, incorporating weather, air traffic, seasonality, and holiday features to set store targets.}
+\item \tr{Reportes semanales y mensuales para dirección sobre venta, conversión y desplazamiento de producto, con \textbf{alertas de reabastecimiento} para tiendas con menos de 2 meses de inventario.}{Weekly and monthly reports for management on sales, conversion, and product sell-through, with \textbf{restocking alerts} for stores with under 2 months of inventory.}
+\end{itemize}
+
+
+\divider
+
+
+\cvevent{\tr{Analista Financiero}{Financial Analyst}}{World Vest Base}{\tr{Mayo 2026 -- Julio 2026}{May 2026 -- July 2026}}{}
+\begin{itemize}
+\item \tr{Evaluación integral de \textbf{más de 150 empresas públicas} de México, Chile, Argentina y Colombia, comprendiendo el análisis de sus estados financieros y de factores cualitativos determinantes para su desempeño.}{Comprehensive evaluation of \textbf{150+ public companies} from Mexico, Chile, Argentina, and Colombia, including the analysis of their financial statements and of the qualitative factors that drive their performance.}
+\item \tr{Estructuración y depuración de información corporativa, garantizando la integridad y vigencia de la base de datos institucional.}{Structuring and cleaning of corporate information, ensuring the integrity and accuracy of the institutional database.}
+\item \tr{Generación de reportes analíticos sobre la situación de cada empresa, proporcionando información estratégica que fundamenta las decisiones de inversión.}{Generation of analytical reports on each company's situation, providing strategic insights that support investment decisions.}
+\end{itemize}
+
+\divider
+
+\cvevent{\tr{Técnico del Área de Impresión y Encargado de Desarrollo de Software}{Printing Area Technician and Software Development Lead}}{ASISA}{2017 -- 2026}{}
+\begin{itemize}
+\item \tr{Diagnóstico y reparación de impresoras de inyección de tinta y de matriz de punto (sistemas de tinta, encoders, rodillos de tracción, bujes) y de no-breaks a nivel componente (soldadura y cambio de baterías); ascenso del área de calidad a encargado del área de impresión en un año.}{Diagnosis and repair of inkjet and dot-matrix printers (ink systems, encoders, feed rollers, bushings) and component-level UPS repair (soldering and battery replacement); promoted from quality control to lead of the printing area within one year.}
+\item \tr{Desarrollo integral de un \textbf{sistema de control interno} (React, TypeScript, Django, PostgreSQL y Docker) para \textbf{digitalizar el flujo de servicio} y sustituir las órdenes en papel: registro del cliente en tableta, órdenes con código QR, asignación a áreas de trabajo, seguimiento de diagnósticos, tiempos y personal, e historial de reparaciones por número de serie; desplegado en un \textbf{servidor Linux configurado y administrado} con acceso remoto por SSH. En etapa final de desarrollo y \textbf{utilizado por $\sim$8 empleados}.}{End-to-end development of an \textbf{internal management system} (React, TypeScript, Django, PostgreSQL, and Docker) to \textbf{digitize the service workflow} and replace paper work orders: customer check-in on a tablet, QR-coded work orders, assignment to work areas, tracking of diagnostics, turnaround times, and staff, and repair history by serial number; deployed on a \textbf{self-configured and administered Linux server} with remote SSH access. In its final development stage and \textbf{used by $\sim$8 employees}.}
+\item \tr{Implementación de \textbf{módulos de análisis de datos y de finanzas para dirección}, que reemplazan los cálculos en Excel, junto con autenticación de empleados, cifrado de información y un \textbf{programa de recompensas por QR} asociado a cada cliente.}{Implementation of \textbf{data analytics and finance modules for management}, replacing Excel-based calculations, along with employee authentication, data encryption, and a \textbf{QR-based rewards program} linked to each customer.}
+\end{itemize}
+
+%==================== PROYECTOS ====================
+
+\cvsection{\tr{Proyectos}{Projects}}
+
+\cvevent{Mean-Reverting Portfolio}{\tr{PAP – Proyecto de Aplicación Profesional}{PAP – Professional Application Project}}{}{}
+\begin{itemize}
+\item \tr{Construcción en Python de portafolios con grupos de activos \textbf{cointegrados}, cuyos precios tienden a moverse juntos y regresar a un valor de equilibrio.}{Construction in Python of portfolios using groups of \textbf{cointegrated} assets whose prices tend to move together and revert to an equilibrium value.}
+\item \tr{Definición de reglas de compra y venta y validación de la estrategia con datos históricos en distintos periodos de mercado.}{Definition of buy and sell rules and validation of the strategy on historical data across different market periods.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{alternativa de inversión de bajo riesgo con \textbf{$\sim$8.8\% de rendimiento anual}, Sharpe de \textbf{1.18} y máximo drawdown de 18\%.}{low-risk investment alternative with \textbf{$\sim$8.8\% annual return}, a Sharpe of \textbf{1.18}, and a maximum drawdown of 18\%.}
+\end{itemize}
+
+\divider
+
+\cvevent{\tr{Clasificador Automático de Frutas con Visión Artificial}{Automated Fruit Classifier with Computer Vision}}{\tr{Proyecto académico -- Laboratorio de Soluciones Tecnológicas, ITESO}{Academic project -- Technology Solutions Lab, ITESO}}{}{}
+\begin{itemize}
+\item \tr{Diseño e implementación de un sistema de clasificación de frutas (cereza, fresa, frambuesa y banda vacía) sobre una banda transportadora industrial, utilizando una \textbf{cámara web comercial} como alternativa de bajo costo a las cámaras industriales especializadas; software modular desarrollado en MATLAB.}{Design and implementation of a fruit classification system (cherry, strawberry, raspberry, and empty belt) on an industrial conveyor belt, using a \textbf{commercial webcam} as a low-cost alternative to specialized industrial cameras; modular software developed in MATLAB.}
+\item \tr{Arquitectura en tiempo real orientada a eventos: detección por sustracción de fondo con filtros geométricos, máquina de estados con buffer \textit{pre-trigger} y adaptación dinámica del fondo con reinicio automático ante cambios de iluminación, \textbf{eliminando las falsas detecciones de la banda metálica} (inicialmente, un evento falso cada $\sim$3\,s).}{Event-driven real-time architecture: background-subtraction detection with geometric filters, a state machine with a \textit{pre-trigger} buffer, and dynamic background adaptation with automatic reset under lighting changes, \textbf{eliminating false detections caused by the metal belt} (initially one false event every $\sim$3\,s).}
+\item \tr{\textbf{CNN de arquitectura propia} (4 bloques convolucionales) entrenada en CPU con un dataset de \textbf{4{,}545 imágenes} capturadas sobre la banda real, con aumento de datos geométrico y de color (HSV) y partición estratificada fija para evitar fuga de datos.}{\textbf{Custom CNN architecture} (4 convolutional blocks) trained on CPU with a dataset of \textbf{4,545 images} captured on the real belt, with geometric and color (HSV) data augmentation and a fixed stratified split to prevent data leakage.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{\textbf{93.7\% de accuracy} en prueba (recall de 100\% en banda vacía y mayor a 93\% en cereza y frambuesa), detección 1:1 de frutas en banda sin falsos positivos y \textbf{latencia de 0.4--0.6\,s por evento sin GPU}.}{\textbf{93.7\% test accuracy} (100\% recall on empty belt and above 93\% on cherry and raspberry), 1:1 fruit detection on the belt with no false positives, and \textbf{0.4--0.6\,s latency per event without a GPU}.}
+\end{itemize}
+
+\divider
+
+\cvevent{\tr{Modelo de Riesgo Crediticio}{Credit Risk Model}}{\tr{Proyecto académico y personal}{Academic and personal project}}{}{}
+\begin{itemize}
+\item \tr{Desarrollo en Python de un \textbf{score de riesgo crediticio interpretable} al estilo del Z-Score de Altman: construcción de 11 ratios financieros (endeudamiento, carga de pagos, cobertura de saldo, ahorro) y selección de variables por significancia estadística (regresión logística), correlación y VIF.}{Development in Python of an \textbf{interpretable credit risk score} in the style of the Altman Z-Score: construction of 11 financial ratios (indebtedness, payment burden, balance coverage, savings) and variable selection by statistical significance (logistic regression), correlation, and VIF.}
+\item \tr{Optimización de los pesos del score mediante Monte Carlo, evolución diferencial y \textit{dual annealing}, con validación en esquema de entrenamiento, validación y prueba.}{Optimization of the score weights via Monte Carlo, differential evolution, and \textit{dual annealing}, validated on a train/validation/test scheme.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{\textbf{$\sim$78\% de accuracy} y \textbf{ROC-AUC de 0.75} en prueba, con una tasa de incumplimiento predicha de 29.1\% frente a 29.0\% real.}{\textbf{$\sim$78\% accuracy} and \textbf{ROC-AUC of 0.75} on test data, with a predicted default rate of 29.1\% vs.\ an actual 29.0\%.}
+\end{itemize}
+
+\divider
+
+\cvevent{\tr{Valuación Crediticia de Empresas}{Corporate Credit Valuation}}{\tr{Proyecto académico presentado en Citi Banamex}{Academic project presented at Citi Banamex}}{}{}
+\begin{itemize}
+\item \tr{Análisis de una empresa cotizada mediante razones de liquidez (razón circulante, prueba ácida), apalancamiento (deuda/capital, deuda neta/EBITDA), cobertura de intereses y flujo de efectivo, con comparación frente a empresas del mismo sector.}{Analysis of a publicly traded company using liquidity ratios (current ratio, quick ratio), leverage (debt-to-equity, net debt/EBITDA), interest coverage, and cash flow, benchmarked against peers in the same sector.}
+\item \textbf{\tr{Resultado:}{Result:}} \tr{recomendación de crédito con condiciones de financiamiento propuestas, presentada ante Citi Banamex.}{credit recommendation with proposed financing terms, presented to Citi Banamex.}
+\end{itemize}
+
+
+
 
 \end{document}
